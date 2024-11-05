@@ -1,3 +1,10 @@
+//start button expand
+const startBtn = document.querySelector('.play-game');
+
+startBtn.addEventListener('click', () => {
+    //.game-controls {display: block;}
+})
+
 // IIFE example
 const gameBoard = (function gameBoard() {
 
@@ -238,4 +245,4 @@ for (let i = 0; i < 9; i++){
 }
 };
 
-playGame();
+//playGame();

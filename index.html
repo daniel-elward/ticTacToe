@@ -3,11 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     <title>TOP || TicTacToe</title>
 </head>
 <body>
-    
+<div class="wrapper">
+    <div class="game-wrapper">
+        <div class="game-header">
+            <p>The Odin Project</p>
+            <h1>Tic-Tac-Toe</h1>
+        </div>
+
+        <button class="play-game"><h2>START &darr;</h2></button>
+        <div class="game-controls">
+            <form>
+                <label for="player-one">Player One Name<br><input type="text"></label><br>
+                <label for="player-two">Player Two Name<br><input type="text"></label><br>
+                <button>Start Game</button>
+            </form>
+        </div>
+
+        <div class="game-board">
+            <div class="a1"><p>X</p></div>
+            <div class="b1"><p>X</p></div>
+            <div class="c1"><p>O</p></div>
+
+            <div class="a2"><p>O</p></div>
+            <div class="b2"><p>X</p></div>
+            <div class="c2"><p>O</p></div>
+
+            <div class="a3"><p>X</p></div>
+            <div class="b3"><p>O</p></div>
+            <div class="c3"><p>X</p></div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
