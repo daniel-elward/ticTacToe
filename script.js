@@ -1,9 +1,48 @@
 //start button expand
-const startBtn = document.querySelector('.play-game');
+const beginBtn = document.querySelector('.play-game');
+const gameControls = document.querySelector('.game-controls');
 
-startBtn.addEventListener('click', () => {
-    //.game-controls {display: block;}
+//initialise the style rule
+gameControls.style.display = "none";
+
+beginBtn.addEventListener("click", () => {
+    console.log(gameControls.style.display)
+
+    if (gameControls.style.display === "none") {
+        gameControls.style.display = "block";
+        beginBtn.innerHTML = "<h2>BEGIN &uarr;</h2>";
+
+    } else if (gameControls.style.display === "block") {
+        gameControls.style.display = "none";
+        beginBtn.innerHTML = "<h2>BEGIN &darr;</h2>";
+    };
 })
+
+const startGame = document.querySelector(".start-game");
+const scoreboard = document.querySelector(".scoreboard");
+
+//initialise the style rule
+scoreboard.style.display = "none";
+
+startGame.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (scoreboard.style.display === "none") {
+        scoreboard.style.display = "grid";
+        //beginBtn.innerHTML = "<h2>BEGIN &uarr;</h2>";
+
+    } else if (scoreboard.style.display === "grid") {
+        scoreboard.style.display = "none";
+        //beginBtn.innerHTML = "<h2>BEGIN &darr;</h2>";
+    };
+
+})
+
+/*
+WRITING CODE TO START THE GAME FROM THE HIDDEN PLAYER FORM. DISPLAY SCOREBOARD ON GAMESTART CLICK & HIDE THE ORIGINAL FORM. 
+
+THEN LINK UP THE EXISTING GAME LOGIC TO THE GUI
+*/
 
 // IIFE example
 const gameBoard = (function gameBoard() {
