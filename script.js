@@ -36,13 +36,9 @@ startGame.addEventListener("click", (e) => {
         //beginBtn.innerHTML = "<h2>BEGIN &darr;</h2>";
     };
 
+    playGame();
+
 })
-
-/*
-WRITING CODE TO START THE GAME FROM THE HIDDEN PLAYER FORM. DISPLAY SCOREBOARD ON GAMESTART CLICK & HIDE THE ORIGINAL FORM. 
-
-THEN LINK UP THE EXISTING GAME LOGIC TO THE GUI
-*/
 
 // IIFE example
 const gameBoard = (function gameBoard() {
@@ -69,97 +65,76 @@ function playGame(){
     const playerOne = createUser("X", 1);
     const playerTwo = createUser("O", 2);
 
-    //logs for testing
-    console.log(playerOne)
-    console.log(playerTwo)
-
     // 1 = playerOne 2 = playerTwo
     let turnCounter = 1;
 
+    (function clearGrid() {
+        const a1 = document.querySelector(".a1")
+        const b1 = document.querySelector(".b1")
+        const c1 = document.querySelector(".c1")
+        const a2 = document.querySelector(".a2")
+        const b2 = document.querySelector(".b2")
+        const c2 = document.querySelector(".c2")
+        const a3 = document.querySelector(".a3")
+        const b3 = document.querySelector(".b3")
+        const c3 = document.querySelector(".c3")
+
+        a1.innerHTML = "<p></p>";
+        b1.innerHTML = "<p></p>";
+        c1.innerHTML = "<p></p>";
+        a2.innerHTML = "<p></p>";
+        b2.innerHTML = "<p></p>";
+        c2.innerHTML = "<p></p>";
+        a3.innerHTML = "<p></p>";
+        b3.innerHTML = "<p></p>";
+        c3.innerHTML = "<p></p>";
+
+        /*
+        better way to do this??
+
+        const gridDOM = {
+            a1: document.querySelector(".a1"),
+            b1: document.querySelector(".b1"),
+            c1: document.querySelector(".c1"),
+
+            a2: document.querySelector(".a2"),
+            b2: document.querySelector(".b2"),
+            c2: document.querySelector(".c2"),
+
+            a3: document.querySelector(".a3"),
+            b3: document.querySelector(".b3"),
+            c3: document.querySelector(".c3")
+        }
+
+        gridDOM.forEach(element => {
+            element.innerHTML = "<p></p>"
+        }); */
+    })();
+
     function playTurn() {
         if (turnCounter === 1) {
+            const gameboardDOM = document.querySelector(".game-board");
 
-            (function formatPlayerChoice() {
-                playerSelection = prompt(`${playerOne.name} please make your selection \n example, [1 to 3] for row, [1 to 3] for column. '12' would be first position on row 1, second position column 2.`);
-
-                //split user input into an array
-                selectionArray = playerSelection.split(""); 
-
-                //decrement by 1 to account for array indexes
-                for (let i = 0; i < 2; i++){
-                    selectionArray[i] -= 1;
-                }
-                return selectionArray;
-            })();
-
-            let usersSelectionIndexed = gameBoard[selectionArray[0]][selectionArray[1]];
-
-            //let isString = typeof gameBoard
-
-            if (typeof usersSelectionIndexed != "string"){
-
-                gameBoard[selectionArray[0]][selectionArray[1]] = playerOne.symbol;
+            gameboardDOM.addEventListener("click", (e) => {
+                e.target.innerHTML = `${playerOne.symbol}`;
                 turnCounter = 2;
-
-                //display the game state
-                console.log("game board display:");
-                console.log(gameBoard);
-            } else {
-                alert("ERROR!, try again");
-                playTurn()
-            }
+                playTurn();
+            })
 
         } else if (turnCounter === 2) {
+            const gameboardDOM = document.querySelector(".game-board");
 
-            (function formatPlayerChoice() {
-                playerSelection = prompt(`${playerTwo.name} please make your selection \n example, [1 to 3] for row, [1 to 3] for column. '12' would be first position on row 1, second position column 2.`);
-
-                //split user input into an array
-                selectionArray = playerSelection.split(""); 
-
-                //decrement by 1 to account for array indexes
-                for (let i = 0; i < 2; i++){
-                    selectionArray[i] -= 1;
-                }
-                return selectionArray;
-            })();
-
-            //console.log(selectionArray)
-            //console.log(gameBoard[1][0])
-
-            let usersSelectionIndexed = gameBoard[selectionArray[0]][selectionArray[1]];
-
-            if (typeof usersSelectionIndexed != "string"){
-
-                gameBoard[selectionArray[0]][selectionArray[1]] = playerTwo.symbol;
+            gameboardDOM.addEventListener("click", (e) => {
+                e.target.innerHTML = `${playerTwo.symbol}`;
                 turnCounter = 1;
-
-                //display the game state
-                console.log("game board display:");
-                console.log(gameBoard);
-            } else {
-                alert("ERROR!, try again");
-                playTurn()
-            }
+                playTurn();
+            })
         }
     } 
 
 
     //checks for a win condition
     function winCondition(){
-        /*
-        index goes row then column
-        THIS IS THE ACTUAL INDEXES
-        [0,0, 0,1, 0,2],
-        [1,0, 1,1, 1,2],
-        [2,0, 2,1, 2,2],
-
-        THIS IS +1 FOR HUMAN ENTRY
-        [1,1, 1,2, 1,3],
-        [2,1, 2,2, 2,3],
-        [3,1, 3,2, 3,3],
-        */
-
         //win condition code can't be optimal? look into ways to rewrite this later
 
         //check left column 
