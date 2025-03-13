@@ -23,6 +23,7 @@ function gameFlow() {
 
     let playerSelection = null;
 
+    //get players selection and validation
     function getPlayerSelection() {
 
         playerSelection = prompt(`${currentPlayer.name} is next, make your selection between 1 and 9 \n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9`);
@@ -33,10 +34,12 @@ function gameFlow() {
             getPlayerSelection();
         };
 
+
         //minus 1 because of arraying indexes
         playerSelection = playerSelection - 1;
 
-        if (!gameController.gameboard[playerSelection] === null) {
+        //checks if the players selection has already been used
+        if (gameController.gameboard[playerSelection] != null) {
             
             alert("ERROR! That position has already been played");
             getPlayerSelection();
@@ -47,7 +50,7 @@ function gameFlow() {
 
     let currentPlayer = playerController.playerOne;
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
 
         getPlayerSelection();
 
