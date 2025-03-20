@@ -1,7 +1,7 @@
 // game object
 const gameController = {
     gameboard: [null, null, null, null, null, null, null, null, null]
-}
+};
 
 //player object 
 const playerController = {
@@ -17,10 +17,23 @@ const playerController = {
         symbol: "O",
         score: 0
     }
-}
+};
 
 function gameFlow() {
 
+    const winCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]  
+    ];
+
+    let roundWon = false;
+    let winner = null;
     let playerSelection = null;
 
     //get players selection and validation
@@ -50,19 +63,71 @@ function gameFlow() {
 
     let currentPlayer = playerController.playerOne;
 
-    for (let i = 0; i < 5; i++) {
+    function checkWin() {
+
+        //not my code
+        //taken from a google search and slightly modified
+
+        for (let i = 0; i <= 7; i++) {
+            const winCondition = winCombos[i];
+            let a = gameController.gameboard[winCondition[0]];
+            let b = gameController.gameboard[winCondition[1]];
+            let c = gameController.gameboard[winCondition[2]];
+            
+            if (a === '' || b === '' || c === '') {
+                continue;
+            };
+
+            //added != null because the defaut state was signaing a match and decaring the round as won
+            if (a != null && b != null && c != null && a === b && b === c) {
+                roundWon = true;
+
+            //check which player wins
+            if (a === "X" && b === "X" && c === "X") {
+
+                console.log("Player one WINS")
+                winner = "player one";
+                playerController.playerOne.score ++
+
+
+            } else if (a === "O" && b === "O" && c === "O") {
+
+                console.log("Player two WINS")
+                winner = "player two";
+                playerController.playerTwo.score ++;
+
+            };
+                
+                break
+            };
+        };
+
+        return roundWon, winner;
+    };
+
+    //loop that runs the game
+    for (let i = 0; i < 8; i++) {
 
         getPlayerSelection();
 
-        //update (and log) array with player selection .. need logic to validate player choice
+        //update (and log) array with player selection
         gameController.gameboard[playerSelection] = currentPlayer.symbol;
-    
         console.log(gameController.gameboard)
         
         //switch current player
         const playerSwitch = (currentPlayer === playerController.playerOne) ? currentPlayer = playerController.playerTwo : currentPlayer = playerController.playerOne;
-    }
-}
+
+        checkWin();
+
+        console.log(`roundWon var ${roundWon}`)
+        console.log(`winning player var ${winner}`)
+        console.log(`Player One score is ${playerController.playerOne.score}`)
+        console.log(`Player Two score is ${playerController.playerTwo.score}`)
+
+        if (roundWon === true) {break};
+
+    };
+};
 
 gameFlow()
 
