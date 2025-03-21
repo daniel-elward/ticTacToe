@@ -1,23 +1,26 @@
+//NOTES TO SELF
+//Next step: create the GUI
+
 // game object
 const gameController = {
     gameboard: [null, null, null, null, null, null, null, null, null]
 };
 
-//player object 
-const playerController = {
+//player factory
+function createPlayer(playerName, symbol) {
 
-    playerOne: {
-        name: "player one",
-        symbol: "X",
-        score: 0
-    },
+    return{
 
-    playerTwo: {
-        name: "player two",
-        symbol: "O",
+        name: playerName,
+        symbol: symbol,
         score: 0
-    }
+
+    };
+
 };
+
+let playerOne = createPlayer("Dan", "X");
+let playerTwo = createPlayer("Nad", "O");
 
 function gameFlow() {
 
@@ -61,7 +64,7 @@ function gameFlow() {
         return playerSelection;
     };
 
-    let currentPlayer = playerController.playerOne;
+    let currentPlayer = playerOne;
 
     function checkWin() {
 
@@ -87,14 +90,14 @@ function gameFlow() {
 
                 console.log("Player one WINS")
                 winner = "player one";
-                playerController.playerOne.score ++
+                playerOne.score ++
 
 
             } else if (a === "O" && b === "O" && c === "O") {
 
                 console.log("Player two WINS")
                 winner = "player two";
-                playerController.playerTwo.score ++;
+                playerTwo.score ++;
 
             };
                 
@@ -115,14 +118,14 @@ function gameFlow() {
         console.log(gameController.gameboard)
         
         //switch current player
-        const playerSwitch = (currentPlayer === playerController.playerOne) ? currentPlayer = playerController.playerTwo : currentPlayer = playerController.playerOne;
+        const playerSwitch = (currentPlayer === playerOne) ? currentPlayer = playerTwo : currentPlayer = playerOne;
 
         checkWin();
 
         console.log(`roundWon var ${roundWon}`)
         console.log(`winning player var ${winner}`)
-        console.log(`Player One score is ${playerController.playerOne.score}`)
-        console.log(`Player Two score is ${playerController.playerTwo.score}`)
+        console.log(`Player One score is ${playerOne.score}`)
+        console.log(`Player Two score is ${playerTwo.score}`)
 
         if (roundWon === true) {break};
 
