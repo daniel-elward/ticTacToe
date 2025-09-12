@@ -102,7 +102,7 @@ const game = {
         };
     };
 
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 0; i++) { //set to 9, disabled while working on GUI
 
         if (gameWon === true) { break; };
 

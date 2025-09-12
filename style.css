@@ -1,0 +1,40 @@
+body {
+    background-color: rgba(235, 235, 235, 0.466);
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    border: 2px solid black;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.gameArea {
+    width: 90%;
+    margin: 0 auto;
+    border: 2px solid black;
+}
+
+.controlPanel {
+    border: 2px solid black;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.gameGrid { 
+    margin: 0 auto;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+}
+
+.a1, .b1, .c1, .a2, .b2, .c2, .a3, .b3, .c3 {
+    width: 100%;
+    min-width: 110px;
+    height: 110px;
+    line-height: 90px;
+    background-color:beige;
+    border: 2px solid black;
+    text-align: center;
+} 
